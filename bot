@@ -64,6 +64,13 @@ createmanual() {
       fi
     fi
 }
+al() {
+   killall screen
+   killall tmux
+   killall telegram-cli
+   prtgrn "Ok!"
+   tmux new-session -s autolaunch "bash bot autolaunch"
+}
 # Reset data to the last update
 fix() {
   git reset --hard FETCH_HEAD
@@ -171,6 +178,9 @@ case $1 in
   ;;
   createmanual)
     createmanual
+  ;;
+  al)
+    al
   ;;
   a*)
     id="${1/a/}"
